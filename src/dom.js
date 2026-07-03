@@ -3,8 +3,8 @@
 // Missing: proper DOM selectors
 function setupEventListeners() {
     // Wrong selector method
-    var addButton = document.getElementById(".add-task-btn");  // Wrong - mixing ID and class
-    var taskInput = document.querySelector("task-input");  // Missing #
+    const addButton = document.getElementById(".add-task-btn");  // Wrong - mixing ID and class
+    const taskInput = document.querySelector("task-input");  // Missing #
     
     // Missing: null checks before adding listeners
     addButton.addEventListener("click", handleAddTask);
@@ -14,14 +14,14 @@ function setupEventListeners() {
 
 // Function with DOM manipulation errors
 function handleAddTask() {
-    var titleInput = document.getElementById("title");
-    var descInput = document.getElementById("description");
+    const titleInput = document.getElementById("title");
+    const descInput = document.getElementById("description");
     
     // No validation
     // Should use event.preventDefault() if form
     
-    var title = titleInput.value;
-    var description = descInput.value;
+    const title = titleInput.value;
+    const description = descInput.value;
     
     // Missing: priority input
     
@@ -33,14 +33,14 @@ function handleAddTask() {
 
 // Function that should use better selectors
 function displayTasks() {
-    var container = document.getElementById("task-list");
+    const container = document.getElementById("task-list");
     
     // Should clear existing content first
     // Missing: null check
     
     // Inefficient - should use template literals and insertAdjacentHTML
-    for (var i = 0; i < taskList.length; i++) {
-        var div = document.createElement("div");
+    for (let i = 0; i < taskList.length; i++) {
+        const div = document.createElement("div");
         div.innerHTML = "<h3>" + taskList[i].title + "</h3>";
         div.innerHTML = div.innerHTML + "<p>" + taskList[i].description + "</p>";
         container.appendChild(div);
@@ -54,7 +54,7 @@ function handleTaskClick(event) {
     // Missing: event.target check
     // Missing: proper event delegation
     
-    var taskId = event.target.id;  // Wrong way to get task ID
+    const taskId = event.target.id;  // Wrong way to get task ID
     
     // Should toggle task completion
     console.log("Task clicked: " + taskId);
