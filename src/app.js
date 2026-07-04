@@ -26,8 +26,7 @@ class Task {
     }
     
     getInfo() {
-        // Wrong string concatenation - should use template literals
-        return `Task: ${this.title} - Priority: ${this.priority}`;
+        return `Task: ${this.title} - Priority: ${this.priority}`; // Changed to string literal
     }
 }
 
