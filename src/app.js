@@ -34,7 +34,7 @@ class Task {
 // Subtask class with inheritance issues
 class SubTask extends Task {
     constructor(title, description, priority, parentTask) {
-        // Missing: super() call
+        super(title, description, priority); // super() added
         this.parentTask = parentTask;
     }
 }
