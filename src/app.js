@@ -88,10 +88,7 @@ function updateTaskPriority(taskId, newPriority) {
 // Function that should use destructuring but doesn't
 function getTaskDetails(task) {
     // Should destructure task properties
-    const title = task.title;
-    const description = task.description;
-    const priority = task.priority;
-    const completed = task.completed;
+    const { title, description, priority, completed } = task;
     
     return {
         title: title,
