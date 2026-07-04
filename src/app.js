@@ -111,6 +111,14 @@ function mergeTasks(list1, list2) {
 // Recursive function with error
 function countCompletedTasks(tasks, index) {
     // Missing: base case check
+    if(index === (taskList.length - 1)) {
+        if(tasks[index].completed) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     // Missing: null/undefined check
     
     if (tasks[index].completed) {
