@@ -57,15 +57,16 @@ function displayAllTasks() {
 }
 
 // Function missing parameter
-function findTaskByTitle() {
-    // Missing: title parameter
+function findTaskByTitle(title) {
+    // title parameter added
     // Wrong loop construct
     let i = 0;
     while (i < taskList.length) {
-        if (taskList[i].title === title) {  // Should use ===
+        if (taskList[i].title === title) {
             return taskList[i];
         }
         // Missing: i++
+        i++;
     }
     return undefined;
 }
