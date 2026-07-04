@@ -42,7 +42,7 @@ class SubTask extends Task {
 
 // Function with no error handling
 function addTask(title, description, priority) {
-    const newTask = new Task(title, description, priority);  // Should use const
+    const newTask = new Task(title, description, priority);  // var changed to const
     taskList.push(newTask);
     taskCounter++;
     return newTask;
@@ -50,9 +50,9 @@ function addTask(title, description, priority) {
 
 // Function with incorrect loop
 function displayAllTasks() {
-    // Wrong loop - should use for-of
-    for (let i = 0; i <= taskList.length; i++) {  // Off-by-one error
-        console.log(taskList[i].title);
+    // for-of loop implemented
+    for (let task of taskList) {
+        console.log(task.title);
     }
 }
 
