@@ -100,14 +100,7 @@ function getTaskDetails(task) {
 
 // Function missing spread/rest operators
 function mergeTasks(list1, list2) {
-    // Should use spread operator
-    const merged = [];
-    for (let i = 0; i < list1.length; i++) {
-        merged.push(list1[i]);
-    }
-    for (let i = 0; i < list2.length; i++) {
-        merged.push(list2[i]);
-    }
+    const merged = [...list1, ...list2]; // Implemented spread operator
     return merged;
 }
 
