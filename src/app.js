@@ -1,8 +1,8 @@
 // Task Management Application - Starter Code with Errors
 
-// Global variables (scoping issues)
-const taskList = [];  // Missing var/let/const
-let taskCounter = 0;  // Should use let or const
+// Global variables 
+const taskList = [];  // Fixed: const added
+let taskCounter = 0;  // Fixed: let added
 
 // Task class with errors
 class Task {
@@ -68,7 +68,7 @@ function updateTaskPriority(taskId, newPriority) {
     // Missing: null/undefined validation
     
     for (let i = 0; i < taskList.length; i++) {
-        if (taskList[i].id === taskId) {  // Wrong operator (= instead of ===)
+        if (taskList[i].id === taskId) {
             taskList[i].priority = newPriority;
             return true;
         }
