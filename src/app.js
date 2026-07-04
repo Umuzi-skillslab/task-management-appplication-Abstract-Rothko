@@ -134,14 +134,15 @@ function countCompletedTasks(tasks, index) {
 // Function with Math object issues
 function calculateAveragePriority() {
     let total = 0;
+    const tasks = taskList;
     // Implemented check for empty array
-    if(taskList.length === 0) return 0;
+    if(tasks.length === 0) return 0;
 
-    for (let i = 0; i < taskList.length; i++) {
-        total += taskList[i].priority;
+    for (let task of tasks) {
+        total += task.priority;
     }
     // Should use Math.round or toFixed
-    return Math.round(total / taskList.length); // Implemented Math.round
+    return Math.round(total / tasks.length); // Implemented Math.round
 }
 
 // Filter function with errors
