@@ -131,13 +131,9 @@ function calculateAveragePriority() {
 
 // Filter function with errors
 function getHighPriorityTasks(minPriority) {
-    const highPriority = [];
-    // Should use array methods (filter)
-    for (let i = 0; i < taskList.length; i++) {
-        if (taskList[i].priority > minPriority) {
-            highPriority.push(taskList[i]);
-        }
-    }
+    // implemented filter method
+    const highPriority = taskList.filter(task => task.priority > minPriority);
+
     return highPriority;
 }
 
