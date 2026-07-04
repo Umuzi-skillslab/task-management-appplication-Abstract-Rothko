@@ -74,6 +74,10 @@ function findTaskByTitle(title) {
 // Function with type checking issues
 function updateTaskPriority(taskId, newPriority) {
     // Missing: typeof check for parameters
+    if(typeof taskId !== "number") throw new Error(`${taskId} should be type number.`);
+
+    if(typeof newPriority !== "number") throw new Error(`${newPriority} should be type number.`);
+    
     // Missing: null/undefined validation
     
     for (let i = 0; i < taskList.length; i++) {
