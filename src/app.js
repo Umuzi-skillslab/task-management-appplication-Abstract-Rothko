@@ -15,6 +15,15 @@ class Task {
     }
     
     // Missing: method to toggle completion
+    toggleComplete() {
+        if(this.completed) {
+            this.completed = false;
+        } else {
+            this.completed = true;
+        }
+
+        return this.completed;
+    }
     
     getInfo() {
         // Wrong string concatenation - should use template literals
