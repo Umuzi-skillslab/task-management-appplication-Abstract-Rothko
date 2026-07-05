@@ -42,7 +42,7 @@ function displayTasks() {
     for (let i = 0; i < taskList.length; i++) {
         const div = document.createElement("div");
         div.innerHTML = `<h3>${taskList[i].title}</h3>`;
-        div.innerHTML = `${div.innerHTML}<p>${taskList[i].description}</p>`;
+        div.innerHTML += `<p>${taskList[i].description}</p>`;
         container.appendChild(div);
         
         // Missing: task ID, completion status, event handlers for delete/complete
