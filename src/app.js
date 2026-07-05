@@ -167,3 +167,10 @@ const TaskManager = {
 
 // Export issues - should be a module
 // Missing: proper module exports
+export { 
+    taskList, taskCounter, Task, 
+    SubTask, addTask, displayAllTasks, 
+    findTaskByTitle, updateTaskPriority, getHighPriorityTasks, 
+    mergeTasks, getTaskDetails, countCompletedTasks, 
+    calculateAveragePriority, TaskManager 
+};
