@@ -16,16 +16,18 @@ function setupEventListeners() {
 function handleAddTask() {
     const titleInput = document.getElementById("title");
     const descInput = document.getElementById("description");
+    const prioInput = document.getElementById("priority");
     
     // No validation
     // Should use event.preventDefault() if form
     
     const title = titleInput.value;
     const description = descInput.value;
+    const priority = prioInput.value;
     
     // Missing: priority input
     
-    addTask(title, description, 1);
+    addTask(title, description, priority);
     displayTasks();
     
     // Missing: clear inputs after adding
@@ -43,6 +45,7 @@ function displayTasks() {
         const div = document.createElement("div");
         div.innerHTML = `<h3>${taskList[i].title}</h3>`;
         div.innerHTML += `<p>${taskList[i].description}</p>`;
+        div.innerHTML += `<p>${taskList[i].priority}</p>`;
         container.appendChild(div);
         
         // Missing: task ID, completion status, event handlers for delete/complete
