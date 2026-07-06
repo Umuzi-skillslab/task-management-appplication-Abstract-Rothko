@@ -1,5 +1,5 @@
 // DOM Manipulation - Starter Code with Errors
-
+import { addTask, taskList } from './app.js'
 // Missing: proper DOM selectors
 function setupEventListeners() {
     // Wrong selector method
