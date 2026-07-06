@@ -5,7 +5,7 @@ function setupEventListeners() {
     // Wrong selector method
     const addButton = document.getElementById("add-task-btn");  // Wrong - mixing ID and class
     const taskInput = document.querySelector("task-input");  // Missing #
-    
+
     // Missing: null checks before adding listeners
     addButton.addEventListener("click", handleAddTask);
     
@@ -67,4 +67,4 @@ function handleTaskClick(event) {
 // Missing: functions to save/load tasks from localStorage
 
 // Initialize (wrong placement - should use DOMContentLoaded)
-setupEventListeners();
+document.addEventListener("DOMContentLoaded", setupEventListeners);
