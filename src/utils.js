@@ -15,19 +15,22 @@ function loadFromStorage() {
     return data;
 }
 
-// Bug: Incorrect Math object usage
+
 function generateRandomId() {
-    return Math.round(Math.random() * 100 - 1);  // Bug: Returns decimal, not integer
+    return Math.round(Math.random() * 100 - 1);
 }
 
-// Bug: Poor string manipulation
+
 function formatTaskName(name) {
-    // Bug: Not using string methods properly
-    let result = name;
-    return result;  // Should capitalize, trim, etc.
+    let result = name
+        .trim()
+        .toLowerCase()
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+    return result;
 }
 
-// Bug: Incorrect boolean logic
 function isHighPriority(task) {
     return task.priority === "high";
 }
