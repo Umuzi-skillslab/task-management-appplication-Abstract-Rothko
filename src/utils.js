@@ -30,9 +30,9 @@ function formatTaskName(name) {
 // Bug: Incorrect boolean logic
 function isHighPriority(task) {
     if (task.priority === "high") {  // Bug: Using ==
-        return "yes";  // Bug: Should return boolean
+        return true;  // Bug: Should return boolean
     }
-    return "no";
+    return false;
 }
 
 // Missing: Class definitions
