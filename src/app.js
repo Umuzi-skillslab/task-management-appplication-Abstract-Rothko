@@ -13,7 +13,7 @@ class Task {
         this.description = description;
         this.priority = priority;
         this.completed = false;
-        // Missing: id property
+        this.id = generateRandomId();
     }
     
     // Missing: method to toggle completion
