@@ -4,7 +4,7 @@
 const priorities = ["low", "medium", "high"];
 
 
-function saveToStorage(data) {
+export function saveToStorage(data) {
     try {
         localStorage.setItem("tasks", JSON.stringify(data));
     } catch(error) {
@@ -12,7 +12,7 @@ function saveToStorage(data) {
     }
 }
 
-function loadFromStorage() {
+export function loadFromStorage() {
     try {
         const data = JSON.parse(localStorage.getItem("tasks"));
         return data;
@@ -22,12 +22,12 @@ function loadFromStorage() {
 }
 
 
-function generateRandomId() {
+export function generateRandomId() {
     return Math.round(Math.random() * 100 - 1);
 }
 
 
-function formatTaskName(name) {
+export function formatTaskName(name) {
     let result = name
         .trim()
         .toLowerCase()
@@ -37,7 +37,7 @@ function formatTaskName(name) {
     return result;
 }
 
-function isHighPriority(task) {
+export function isHighPriority(task) {
     return task.priority === "high";
 }
 
