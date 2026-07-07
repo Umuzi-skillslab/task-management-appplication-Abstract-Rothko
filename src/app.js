@@ -18,13 +18,7 @@ class Task {
     
     // Missing: method to toggle completion
     toggleComplete() {
-        if(this.completed) {
-            this.completed = false;
-        } else {
-            this.completed = true;
-        }
-
-        return this.completed;
+        this.completed = !this.completed;
     }
     
     getInfo() {
