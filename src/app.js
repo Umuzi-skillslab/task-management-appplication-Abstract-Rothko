@@ -1,4 +1,6 @@
 // Task Management Application - Starter Code with Errors
+import { generateRandomId } from "./utils";
+
 
 // Global variables 
 const taskList = [];  // Fixed: const added
