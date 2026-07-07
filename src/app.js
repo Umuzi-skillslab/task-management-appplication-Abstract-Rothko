@@ -75,6 +75,7 @@ function updateTaskPriority(taskId, newPriority) {
     if(typeof newPriority !== "number") throw new Error(`${newPriority} should be type number.`);
     
     // Missing: null/undefined validation
+    if(taskList.length === 0) return false;
     
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id === taskId) {
