@@ -6,12 +6,12 @@ const priorities = ["low", "medium", "high"];
 // Bug: Missing JSON operations
 function saveToStorage(data) {
     // Bug: Not converting to JSON
-    localStorage.setItem("tasks", data);
+    localStorage.setItem("tasks", JSON.stringify(data));
 }
 
 function loadFromStorage() {
     // Bug: Not parsing JSON
-    const data = localStorage.getItem("tasks");
+    const data = JSON.parse(localStorage.getItem("tasks"));
     return data;
 }
 
