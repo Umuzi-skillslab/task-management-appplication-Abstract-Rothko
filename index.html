@@ -12,11 +12,10 @@
         
         <div class="add-task-section">
             <h2>Add New Task</h2>
-            <!-- Form with issues -->
+
             <form id="task-input">
                 <input type="text" id="title" placeholder="Task Title">
                 <input type="text" id="description" placeholder="Description">
-                <!-- Missing: priority input -->
                 <input type="number" id="priority" min="1" max="3" value="1">
                 <button type="submit" id="add-task-btn">Add Task</button>
             </form>
@@ -31,10 +30,9 @@
         </div>
     </div>
     
-    <!-- Scripts loaded in wrong order -->
+
     <script type="module" src="./src/app.js"></script>
     <script type="module" src="./src/dom.js"></script>
     <script type="module" src="./src/utils.js"></script>
-    <!-- Missing: module script -->
 </body>
 </html>
