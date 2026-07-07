@@ -4,7 +4,7 @@ import { addTask, taskList } from './app.js'
 function setupEventListeners() {
     // Wrong selector method
     const addButton = document.getElementById("add-task-btn");  // Wrong - mixing ID and class
-    const taskInput = document.querySelector("task-input");  // Missing #
+    const taskInput = document.querySelector("#task-input");
 
     // Missing: null checks before adding listeners
     addButton.addEventListener("click", handleAddTask);
