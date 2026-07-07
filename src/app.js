@@ -109,11 +109,7 @@ function mergeTasks(list1, list2) {
 function countCompletedTasks(tasks, index) {
     // Added base case check
     if(index === (tasks.length - 1)) {
-        if(tasks[index].completed) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return tasks[index].completed ? 1 : 0;
     }
 
     // Added null/undefined check
