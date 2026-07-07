@@ -3,16 +3,22 @@
 // Bug: Not using proper data structures
 const priorities = ["low", "medium", "high"];
 
-// Bug: Missing JSON operations
+
 function saveToStorage(data) {
-    // Bug: Not converting to JSON
-    localStorage.setItem("tasks", JSON.stringify(data));
+    try {
+        localStorage.setItem("tasks", JSON.stringify(data));
+    } catch(error) {
+        console.log(`Failed to save data: ${error.message}`);
+    }
 }
 
 function loadFromStorage() {
-    // Bug: Not parsing JSON
-    const data = JSON.parse(localStorage.getItem("tasks"));
-    return data;
+    try {
+        const data = JSON.parse(localStorage.getItem("tasks"));
+        return data;
+    } catch(error) {
+        console.log(`Failed to load data: ${error.message}`);
+    }
 }
 
 
