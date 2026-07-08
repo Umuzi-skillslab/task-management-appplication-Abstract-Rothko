@@ -3,15 +3,13 @@ import { addTask, taskList } from './app.js'
 import { generateRandomId, formatTaskName } from './utils.js';
 // Missing: proper DOM selectors
 function setupEventListeners() {
-    // Wrong selector method
-    const addButton = document.getElementById("add-task-btn");  // Wrong - mixing ID and class
+    const addButton = document.getElementById("add-task-btn");
     const taskInput = document.querySelector("#task-input");
     const taskItems = document.querySelector(".task-list");
 
     // Missing: null checks before adding listeners
     
     
-    // Missing: other event listeners for form submission, etc.
     taskInput.addEventListener("submit", handleAddTask);
     taskItems.addEventListener("click", handleTaskClick);
 }
