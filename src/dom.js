@@ -7,19 +7,20 @@ function setupEventListeners() {
     const taskInput = document.querySelector("#task-input");
 
     // Missing: null checks before adding listeners
-    addButton.addEventListener("click", handleAddTask);
+    taskInput.addEventListener("submit", handleAddTask);
     
     // Missing: other event listeners for form submission, etc.
 }
 
 // Function with DOM manipulation errors
-function handleAddTask() {
+function handleAddTask(event) {
     const titleInput = document.getElementById("title");
     const descInput = document.getElementById("description");
     const prioInput = document.getElementById("priority");
     
     // No validation
     // Should use event.preventDefault() if form
+    event.preventDefault();
     
     const title = titleInput.value;
     const description = descInput.value;
@@ -31,6 +32,7 @@ function handleAddTask() {
     displayTasks();
     
     // Missing: clear inputs after adding
+    this.reset()
 }
 
 // Function that should use better selectors
