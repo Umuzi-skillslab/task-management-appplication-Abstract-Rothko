@@ -1,15 +1,19 @@
 // DOM Manipulation - Starter Code with Errors
 import { addTask, taskList } from './app.js'
+import { generateRandomId, formatTaskName } from './utils.js';
 // Missing: proper DOM selectors
 function setupEventListeners() {
     // Wrong selector method
     const addButton = document.getElementById("add-task-btn");  // Wrong - mixing ID and class
     const taskInput = document.querySelector("#task-input");
+    const taskItems = document.querySelector(".task-list");
 
     // Missing: null checks before adding listeners
-    taskInput.addEventListener("submit", handleAddTask);
+    
     
     // Missing: other event listeners for form submission, etc.
+    taskInput.addEventListener("submit", handleAddTask);
+    taskItems.addEventListener("click", handleTaskClick);
 }
 
 // Function with DOM manipulation errors
@@ -47,8 +51,8 @@ function displayTasks() {
 
     for (let i = 0; i < taskList.length; i++) {
         const div = document.createElement("div");
-
         let status = taskList[i].completed ? "Completed" : "Pending";
+        taskList[i].id = generateRandomId();
 
         const delButton = document.createElement("button");
         delButton.setAttribute("class", "delete-btn");
@@ -59,7 +63,8 @@ function displayTasks() {
         completeButton.setAttribute("class", "complete-btn");
         completeButton.setAttribute("data-id", taskList[i].id);
         completeButton.innerText = taskList[i].completed ? "Undo" : "Complete";
-
+        
+        div.insertAdjacentHTML("beforeend", `<h3>${status}</h3>`);
         div.insertAdjacentHTML("beforeend", `<h3>${taskList[i].title}</h3>`);
         div.insertAdjacentHTML("beforeend", `<p>${taskList[i].description}</p>`);
         div.insertAdjacentHTML("beforeend", `<p>${taskList[i].priority}</p>`);
@@ -83,9 +88,9 @@ function handleTaskClick(event) {
 
   if (!id) return;
 
-  if (target.classList.contains("delete")) {
+  if (target.classList.contains("delete-btn")) {
     deleteEntry(id);
-  } else if (target.classList.contains("complete")) {
+  } else if (target.classList.contains("complete-btn")) {
     const person  = taskList.find((entry) => String(entry.id) === id)
     if(person) {
       person.toggleComplete();
@@ -95,7 +100,7 @@ function handleTaskClick(event) {
 }
 
 function deleteEntry(id) {
-  const index = db.findIndex((entry) => String(entry.id) === id);
+  const index = taskList.findIndex((entry) => String(entry.id) === id);
   if (index !== -1) {
     taskList.splice(index, 1);
     displayTasks();
