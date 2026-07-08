@@ -34,7 +34,7 @@ function handleAddTask(event) {
         return;
     }
     
-    addTask(title, description, priority);
+    addTask(formatTaskName(title), formatTaskName(description), priority);
     displayTasks();
     
     this.reset()
