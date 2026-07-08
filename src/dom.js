@@ -25,6 +25,10 @@ function handleAddTask(event) {
     const description = descInput.value;
     const priority = prioInput.value;
     
+    if(title.trim() === "" || description.trim() === "") {
+        alert("Please complete all details");
+        return;
+    }
     
     addTask(title, description, priority);
     displayTasks();
