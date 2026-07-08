@@ -39,10 +39,11 @@ function handleAddTask(event) {
 function displayTasks() {
     const container = document.getElementById("task-list");
     
-    // Should clear existing content first
-    // Missing: null check
-    
-    // Inefficient - should use template literals and insertAdjacentHTML
+    // Loop to clear content
+    while(container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+
     for (let i = 0; i < taskList.length; i++) {
         const div = document.createElement("div");
         div.insertAdjacentHTML("beforeend", `<h3>${taskList[i].title}</h3>`);
