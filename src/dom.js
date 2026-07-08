@@ -94,6 +94,14 @@ function handleTaskClick(event) {
   }
 }
 
+function deleteEntry(id) {
+  const index = db.findIndex((entry) => String(entry.id) === id);
+  if (index !== -1) {
+    taskList.splice(index, 1);
+    displayTasks();
+  }
+}
+
 // Missing: JSON conversion functions
 // Missing: functions to save/load tasks from localStorage
 
