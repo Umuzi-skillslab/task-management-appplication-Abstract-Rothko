@@ -8,7 +8,15 @@ function setupEventListeners() {
     const taskItems = document.querySelector(".task-list");
 
     // Missing: null checks before adding listeners
-    
+    if(!taskInput) {
+        console.log("Task input returned null. Problem arose fetching it.");
+        return;
+    }
+
+    if(!taskItems) {
+        console.log("Task Items returned null. Problem arose fetching it.");
+        return;
+    }
     
     taskInput.addEventListener("submit", handleAddTask);
     taskItems.addEventListener("click", handleTaskClick);
