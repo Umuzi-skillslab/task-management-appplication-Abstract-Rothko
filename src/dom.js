@@ -78,13 +78,20 @@ function displayTasks() {
 
 // Function with event handling issues
 function handleTaskClick(event) {
-    // Missing: event.target check
-    // Missing: proper event delegation
-    
-    const taskId = event.target.id;  // Wrong way to get task ID
-    
-    // Should toggle task completion
-    console.log("Task clicked: " + taskId);
+  const target = event.target;
+  const id = target.getAttribute("data-id");
+
+  if (!id) return;
+
+  if (target.classList.contains("delete")) {
+    deleteEntry(id);
+  } else if (target.classList.contains("complete")) {
+    const person  = taskList.find((entry) => String(entry.id) === id)
+    if(person) {
+      person.toggleComplete();
+      displayTasks();
+    }
+  }
 }
 
 // Missing: JSON conversion functions
