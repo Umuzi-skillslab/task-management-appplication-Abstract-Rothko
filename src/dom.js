@@ -47,12 +47,32 @@ function displayTasks() {
 
     for (let i = 0; i < taskList.length; i++) {
         const div = document.createElement("div");
+
+        let status = taskList[i].completed ? "Completed" : "Pending";
+
+        const delButton = document.createElement("button");
+        delButton.setAttribute("class", "delete-btn");
+        delButton.setAttribute("data-id", taskList[i].id);
+        delButton.innerText = "Delete";
+        
+        const completeButton = document.createElement("button");
+        completeButton.setAttribute("class", "complete-btn");
+        completeButton.setAttribute("data-id", taskList[i].id);
+        completeButton.innerText = taskList[i].completed ? "Undo" : "Complete";
+
         div.insertAdjacentHTML("beforeend", `<h3>${taskList[i].title}</h3>`);
         div.insertAdjacentHTML("beforeend", `<p>${taskList[i].description}</p>`);
         div.insertAdjacentHTML("beforeend", `<p>${taskList[i].priority}</p>`);
-        container.appendChild(div);
         
-        // Missing: task ID, completion status, event handlers for delete/complete
+        if(taskList[i].completed) {
+            div.classList.add("completed");
+        }
+        
+        div.append(completeButton);
+        div.append(delButton);
+        
+        container.appendChild(div);
+
     }
 }
 
