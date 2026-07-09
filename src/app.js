@@ -1,4 +1,4 @@
-// Task Management Application - Starter Code with Errors
+// Task Management Application
 
 
 // Global variables 
