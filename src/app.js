@@ -148,7 +148,12 @@ const TaskManager = {
     
     // Missing: method to add task using functional approach
     // Missing: method using array methods (map, filter, reduce)
-    
+    addTask: function(title, description, priority) {
+        const newTask = new Task(title, description, priority);
+        this.tasks = [...this.tasks, newTask];
+        return newTask;
+    },
+
     getTotalTasks: function() {
         return this.tasks.length;
     }
