@@ -1,7 +1,7 @@
 // Utilities - Starter Code (WITH ERRORS AND MISSING FEATURES)
 
 // Bug: Not using proper data structures
-const priorities = ["low", "medium", "high"];
+export const priorities = {"low" : 1, "medium": 2, "high" : 3};
 
 
 export function saveToStorage(data) {
