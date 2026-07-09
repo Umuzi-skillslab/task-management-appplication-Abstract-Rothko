@@ -23,7 +23,7 @@ export function loadFromStorage() {
 
 
 export function generateRandomId() {
-    return Math.round(Math.random() * 100 - 1);
+    return Math.round(Math.random() * 10000);
 }
 
 
