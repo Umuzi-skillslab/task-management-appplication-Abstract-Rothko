@@ -162,6 +162,10 @@ const TaskManager = {
         return this.tasks.filter(task => task.title === title);
     },
 
+    countCompletedTasks: function() {
+        return this.tasks.reduce((acc, task) => acc + (task.completed ? 1 : 0), 0);
+    },
+
     getTotalTasks: function() {
         return this.tasks.length;
     }
