@@ -38,7 +38,7 @@ export function formatTaskName(name) {
 }
 
 export function isHighPriority(task) {
-    return task.priority === "high";
+    return task.priority === priorities["high"];
 }
 
 // Missing: Class definitions
