@@ -1,6 +1,6 @@
 // DOM Manipulation - Starter Code with Errors
 import { addTask, taskList } from './app.js'
-import { generateRandomId, formatTaskName, formatTaskPriority } from './utils.js';
+import { formatTaskName, formatTaskPriority } from './utils.js';
 // Missing: proper DOM selectors
 function setupEventListeners() {
     const addButton = document.getElementById("add-task-btn");
@@ -58,7 +58,7 @@ function displayTasks() {
     for (let i = 0; i < taskList.length; i++) {
         const div = document.createElement("div");
         let status = taskList[i].completed ? "Completed" : "Pending";
-        taskList[i].id = generateRandomId();
+        
 
         const delButton = document.createElement("button");
         delButton.setAttribute("class", "delete-btn");

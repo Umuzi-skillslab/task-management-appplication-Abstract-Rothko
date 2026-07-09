@@ -1,5 +1,5 @@
 // Task Management Application
-
+import { generateRandomId } from "./utils.js";
 
 // Global variables 
 const taskList = [];  // Fixed: const added
@@ -12,7 +12,7 @@ class Task {
         this.description = description;
         this.priority = priority;
         this.completed = false;
-        this.id = null;
+        this.id = generateRandomId();
     }
     
     toggleCompletion() {
