@@ -42,7 +42,6 @@ function addTask(title, description, priority) {
     return newTask;
 }
 
-// Function with incorrect loop
 function displayAllTasks() {
     // for-of loop implemented
     for (let task of taskList) {
@@ -50,10 +49,7 @@ function displayAllTasks() {
     }
 }
 
-// Function missing parameter
-function findTaskByTitle(title) {
-    // title parameter added
-    // Wrong loop construct
+function findTaskByTitle(title) { // title parameter added
     let i = 0;
     while (i < taskList.length) {
         if (taskList[i].title === title) {
@@ -145,20 +141,14 @@ function getHighPriorityTasks(minPriority) {
 const TaskManager = {
     tasks: taskList,
     
-    // Missing: method to add task using functional approach
-    // Missing: method using array methods (map, filter, reduce)
     addTask: function(title, description, priority) {
         const newTask = new Task(title, description, priority);
-        this.tasks = [...this.tasks, newTask];
+        this.tasks.push(newTask);
         return newTask;
     },
 
     displayAllTasks: function() {
-        return this.tasks.map(task => {console.log(task.title)});
-    },
-
-    findTaskByTitle: function(title) {
-        return this.tasks.filter(task => task.title === title);
+        return this.tasks.forEach(task => {console.log(task.title)});
     },
 
     countCompletedTasks: function() {
