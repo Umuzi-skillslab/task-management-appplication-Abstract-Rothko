@@ -15,7 +15,7 @@ class Task {
         this.id = null;
     }
     
-    toggleComplete() {
+    toggleCompletion() {
         this.completed = !this.completed;
     }
     
