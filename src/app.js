@@ -1,5 +1,4 @@
 // Task Management Application - Starter Code with Errors
-import { generateRandomId } from "./utils";
 
 
 // Global variables 
@@ -13,20 +12,19 @@ class Task {
         this.description = description;
         this.priority = priority;
         this.completed = false;
-        this.id = generateRandomId();
+        this.id = null;
     }
     
-    // Missing: method to toggle completion
     toggleComplete() {
         this.completed = !this.completed;
     }
     
     getInfo() {
-        return `Task: ${this.title} - Priority: ${this.priority}`; // Changed to string literal
+        return `Task: ${this.title} - Priority: ${this.priority}`;
     }
 }
 
-// Subtask class with inheritance issues
+
 class SubTask extends Task {
     constructor(title, description, priority, parentTask) {
         super(title, description, priority); // super() added
@@ -38,7 +36,7 @@ class SubTask extends Task {
 
 // Function with no error handling
 function addTask(title, description, priority) {
-    const newTask = new Task(title, description, priority);  // var changed to const
+    const newTask = new Task(title, description, priority);
     taskList.push(newTask);
     taskCounter++;
     return newTask;
@@ -69,12 +67,12 @@ function findTaskByTitle(title) {
 
 // Function with type checking issues
 function updateTaskPriority(taskId, newPriority) {
-    // Missing: typeof check for parameters
+    // typeof check for parameters
     if(typeof taskId !== "number") throw new Error(`${taskId} should be type number.`);
 
     if(typeof newPriority !== "number") throw new Error(`${newPriority} should be type number.`);
     
-    // Missing: null/undefined validation
+    // null/undefined validation
     if(taskList.length === 0) return false;
     
     for (let i = 0; i < taskList.length; i++) {
@@ -86,9 +84,9 @@ function updateTaskPriority(taskId, newPriority) {
     return false;
 }
 
-// Function that should use destructuring but doesn't
+// Function that should use destructuring
 function getTaskDetails(task) {
-    // Should destructure task properties
+    // destructure task properties
     const { title, description, priority, completed } = task;
     
     return {
@@ -105,7 +103,7 @@ function mergeTasks(list1, list2) {
     return merged;
 }
 
-// Recursive function with error
+// Recursive function
 function countCompletedTasks(tasks, index) {
     // Added base case check
     if(index === (tasks.length - 1)) {
@@ -124,7 +122,6 @@ function countCompletedTasks(tasks, index) {
     }
 }
 
-// Function with Math object issues
 function calculateAveragePriority() {
     let total = 0;
     const tasks = taskList;
@@ -134,7 +131,6 @@ function calculateAveragePriority() {
     for (let task of tasks) {
         total += task.priority;
     }
-    // Should use Math.round or toFixed
     return Math.round(total / tasks.length); // Implemented Math.round
 }
 
@@ -161,9 +157,8 @@ const TaskManager = {
 // Export issues - should be a module
 // Missing: proper module exports
 export { 
-    taskList, taskCounter, Task, 
-    SubTask, addTask, displayAllTasks, 
-    findTaskByTitle, updateTaskPriority, getHighPriorityTasks, 
+    taskList, taskCounter, addTask, displayAllTasks, Task, 
+    SubTask, findTaskByTitle, updateTaskPriority, getHighPriorityTasks, 
     mergeTasks, getTaskDetails, countCompletedTasks, 
     calculateAveragePriority, TaskManager 
 };
