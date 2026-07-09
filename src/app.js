@@ -154,8 +154,12 @@ const TaskManager = {
         return newTask;
     },
 
-    displayAllTasks: function () {
+    displayAllTasks: function() {
         return this.tasks.map(task => {console.log(task.title)});
+    },
+
+    findTaskByTitle: function(title) {
+        return this.tasks.filter(task => task.title === title);
     },
 
     getTotalTasks: function() {
