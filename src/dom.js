@@ -1,6 +1,6 @@
 // DOM Manipulation - Starter Code with Errors
 import { addTask, taskList } from './app.js'
-import { generateRandomId, formatTaskName } from './utils.js';
+import { generateRandomId, formatTaskName, formatTaskPriority } from './utils.js';
 // Missing: proper DOM selectors
 function setupEventListeners() {
     const addButton = document.getElementById("add-task-btn");
@@ -40,7 +40,7 @@ function handleAddTask(event) {
         return;
     }
     
-    addTask(formatTaskName(title), formatTaskName(description), priority);
+    addTask(formatTaskName(title), formatTaskName(description), formatTaskPriority(priority));
     displayTasks();
     
     this.reset()
