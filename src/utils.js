@@ -37,6 +37,11 @@ export function formatTaskName(name) {
     return result;
 }
 
+export function formatTaskPriority(value) {
+    let priority = Number(value);
+    return priority;
+}
+
 export function isHighPriority(task) {
     return task.priority === priorities["high"];
 }
