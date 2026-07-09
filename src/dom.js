@@ -99,7 +99,7 @@ function handleTaskClick(event) {
   } else if (target.classList.contains("complete-btn")) {
     const person  = taskList.find((entry) => String(entry.id) === id)
     if(person) {
-      person.toggleComplete();
+      person.toggleCompletion();
       displayTasks();
     }
   }
