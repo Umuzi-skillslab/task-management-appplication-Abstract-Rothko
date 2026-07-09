@@ -154,6 +154,10 @@ const TaskManager = {
         return newTask;
     },
 
+    displayAllTasks: function () {
+        return this.tasks.map(task => {console.log(task.title)});
+    },
+
     getTotalTasks: function() {
         return this.tasks.length;
     }
