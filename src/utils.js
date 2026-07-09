@@ -41,6 +41,14 @@ export function isHighPriority(task) {
     return task.priority === priorities["high"];
 }
 
+export function isLowPriority(task) {
+    return task.priority === priorities["low"];
+}
+
+export function isMediumPriority(task) {
+    return task.priority === priorities["medium"];
+}
+
 // Missing: Class definitions
 // Missing: Inheritance example
 // Missing: Module exports
