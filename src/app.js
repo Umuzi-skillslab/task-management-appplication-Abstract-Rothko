@@ -32,8 +32,6 @@ class SubTask extends Task {
     }
 }
 
-// Functions with errors
-
 // Function with no error handling
 function addTask(title, description, priority) {
     const newTask = new Task(title, description, priority);
