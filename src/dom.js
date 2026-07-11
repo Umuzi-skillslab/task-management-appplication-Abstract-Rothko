@@ -69,6 +69,16 @@ function displayTasks() {
         completeButton.setAttribute("class", "complete-btn");
         completeButton.setAttribute("data-id", taskList[i].id);
         completeButton.innerText = taskList[i].completed ? "Undo" : "Complete";
+
+        const raisePriorityButton = document.createElement("button");
+        raisePriorityButton.setAttribute("class", "raise-btn");
+        raisePriorityButton.setAttribute("data-id", taskList[i].id);
+        raisePriorityButton.innerText = "Raise Priority";
+
+        const lowerPriorityButton = document.createElement("button");
+        lowerPriorityButton.setAttribute("class", "lower-button");
+        lowerPriorityButton.setAttribute("data-id", taskList[i].id);
+        lowerPriorityButton.innerText = "Lower Priority";
         
         div.insertAdjacentHTML("beforeend", `<h3>${status}</h3>`);
         div.insertAdjacentHTML("beforeend", `<h3>${taskList[i].title}</h3>`);
@@ -78,9 +88,19 @@ function displayTasks() {
         if(taskList[i].completed) {
             div.classList.add("completed");
         }
+
+        if(taskList[i].priority === 3) {
+          raisePriorityButton.classList.add("high-priority");
+        }
+
+        if(taskList[i].priority === 1) {
+          lowerPriorityButton.classList.add("low-priority");
+        }
         
         div.append(completeButton);
         div.append(delButton);
+        div.append(raisePriorityButton);
+        div.append(lowerPriorityButton);
         
         container.appendChild(div);
 
