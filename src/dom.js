@@ -1,6 +1,6 @@
 // DOM Manipulation - Starter Code with Errors
 import { addTask, taskList } from './app.js'
-import { formatTaskName, formatTaskPriority } from './utils.js';
+import { formatTaskName, formatTaskPriority, saveToStorage, loadFromStorage } from './utils.js';
 // Missing: proper DOM selectors
 function setupEventListeners() {
     const addButton = document.getElementById("add-task-btn");
