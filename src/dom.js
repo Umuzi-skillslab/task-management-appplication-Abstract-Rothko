@@ -126,4 +126,8 @@ function loadTasks() {
 // Missing: functions to save/load tasks from localStorage
 
 // Initialize (wrong placement - should use DOMContentLoaded)
-document.addEventListener("DOMContentLoaded", setupEventListeners);
+document.addEventListener("DOMContentLoaded", () => {
+  loadTasks(), 
+  displayTasks(),
+  setupEventListeners()
+});
