@@ -85,6 +85,8 @@ function displayTasks() {
         container.appendChild(div);
 
     }
+
+    saveToStorage(taskList);
 }
 
 // Function with event handling issues
