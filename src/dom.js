@@ -1,6 +1,6 @@
 // DOM Manipulation - Starter Code with Errors
 import { addTask, taskList, Task } from './app.js'
-import { formatTaskName, formatTaskPriority, saveToStorage, loadFromStorage } from './utils.js';
+import { formatTaskName, formatTaskPriority, saveToStorage, loadFromStorage, isHighPriority, isMediumPriority, isLowPriority } from './utils.js';
 // Missing: proper DOM selectors
 function setupEventListeners() {
     const addButton = document.getElementById("add-task-btn");
@@ -76,7 +76,7 @@ function displayTasks() {
         raisePriorityButton.innerText = "Raise Priority";
 
         const lowerPriorityButton = document.createElement("button");
-        lowerPriorityButton.setAttribute("class", "lower-button");
+        lowerPriorityButton.setAttribute("class", "lower-btn");
         lowerPriorityButton.setAttribute("data-id", taskList[i].id);
         lowerPriorityButton.innerText = "Lower Priority";
         
@@ -113,15 +113,25 @@ function displayTasks() {
 function handleTaskClick(event) {
   const target = event.target;
   const id = target.getAttribute("data-id");
+  const task = taskList.find((entry) => String(entry.id) === id)
 
   if (!id) return;
 
   if (target.classList.contains("delete-btn")) {
     deleteEntry(id);
   } else if (target.classList.contains("complete-btn")) {
-    const task = taskList.find((entry) => String(entry.id) === id)
     if(task) {
       task.toggleCompletion();
+      displayTasks();
+    }
+  } else if(target.classList.contains("raise-btn")) {
+    if(isLowPriority(task) || isMediumPriority(task)) {
+      task.priority += 1;
+      displayTasks();
+    }
+  } else if(target.classList.contains("lower-btn")) {
+    if(isHighPriority(task) || isMediumPriority(task)) {
+      task.priority -= 1;
       displayTasks();
     }
   }
