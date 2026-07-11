@@ -152,10 +152,7 @@ function loadTasks() {
   return taskList;
 }
 
-// Missing: JSON conversion functions
-// Missing: functions to save/load tasks from localStorage
-
-// Initialize (wrong placement - should use DOMContentLoaded)
+// Initialize
 document.addEventListener("DOMContentLoaded", () => {
   loadTasks(), 
   displayTasks(),
