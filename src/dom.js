@@ -1,5 +1,5 @@
 // DOM Manipulation - Starter Code with Errors
-import { addTask, taskList } from './app.js'
+import { addTask, taskList, Task } from './app.js'
 import { formatTaskName, formatTaskPriority, saveToStorage, loadFromStorage } from './utils.js';
 // Missing: proper DOM selectors
 function setupEventListeners() {
@@ -111,6 +111,13 @@ function deleteEntry(id) {
     taskList.splice(index, 1);
     displayTasks();
   }
+}
+
+function loadTasks() {
+  const loadedTasks = loadFromStorage() || [];
+  const result = loadedTasks.map(task => Object.assign(new Task(task.title, task.description, task.priority), task));
+  taskList.push(...result);
+  return taskList;
 }
 
 // Missing: JSON conversion functions
