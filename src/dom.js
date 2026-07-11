@@ -119,9 +119,9 @@ function handleTaskClick(event) {
   if (target.classList.contains("delete-btn")) {
     deleteEntry(id);
   } else if (target.classList.contains("complete-btn")) {
-    const person  = taskList.find((entry) => String(entry.id) === id)
-    if(person) {
-      person.toggleCompletion();
+    const task = taskList.find((entry) => String(entry.id) === id)
+    if(task) {
+      task.toggleCompletion();
       displayTasks();
     }
   }
