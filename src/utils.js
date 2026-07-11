@@ -14,10 +14,11 @@ export function saveToStorage(data) {
 
 export function loadFromStorage() {
     try {
-        const data = JSON.parse(localStorage.getItem("tasks"));
-        return data;
+        const data = localStorage.getItem("tasks");
+        return data ? JSON.parse(data) : [];
     } catch(error) {
-        console.log(`Failed to load data: ${error.message}`);
+        console.error(`Failed to load data: ${error.message}`);
+        return [];
     }
 }
 
