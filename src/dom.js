@@ -205,10 +205,15 @@ function deleteEntry(id) {
 }
 
 function loadTasks() {
-    const loadedTasks = loadFromStorage() || [];
-    const result = loadedTasks.map(task => Object.assign(new Task(task.title, task.description, task.priority), task));
-    taskList.push(...result);
-    return taskList;
+    try {
+        const loadedTasks = loadFromStorage() || [];
+        const result = loadedTasks.map(task => Object.assign(new Task(task.title, task.description, task.priority), task));
+        taskList.push(...result);
+        return taskList;
+    } catch(error) {
+        console.error("Problem loading tasks: ", error);
+    }
+    
 }
 
 // Initialize
