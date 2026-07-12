@@ -1,11 +1,13 @@
-// DOM Manipulation - Starter Code with Errors
-import { addTask, taskList, Task } from './app.js'
+// DOM Manipulation
+import { addTask, taskList, Task, calculateAveragePriority, countCompletedTasks } from './app.js'
 import { formatTaskName, formatTaskPriority, saveToStorage, loadFromStorage, isHighPriority, isMediumPriority, isLowPriority } from './utils.js';
-// Missing: proper DOM selectors
+
 function setupEventListeners() {
-    const addButton = document.getElementById("add-task-btn");
     const taskInput = document.querySelector("#task-input");
     const taskItems = document.querySelector(".task-list");
+    const sortButton = document.getElementById("sort-btn");
+    const showStatsButton = document.getElementById("show-stats-btn");
+    const hideStatsButton = document.getElementById("hide-stats-btn");
 
     // Missing: null checks before adding listeners
     if(!taskInput) {
@@ -17,9 +19,33 @@ function setupEventListeners() {
         console.log("Task Items returned null. Problem arose fetching it.");
         return;
     }
+
+    if(!sortButton) {
+        console.log("Sort button returned null. Problem arose fetching it.");
+        return;
+    }
+
+    if(!showStatsButton) {
+        console.log("Show stats button returned null. Problem arose fetching it.");
+        return;
+    }
+
+    if(!hideStatsButton) {
+        console.log("Hide stats button returned null. Problem arose fetching it.");
+        return;
+    }
     
     taskInput.addEventListener("submit", handleAddTask);
     taskItems.addEventListener("click", handleTaskClick);
+    showStatsButton.addEventListener("click", handleShowStats);
+    hideStatsButton.addEventListener("click", () => {
+      const statistics = document.querySelector(".statistics");
+      statistics.style.display = "none";
+    });
+    sortButton.addEventListener("click", () => {
+      taskList.sort((a,b) => (b.priority - a.priority));
+      displayTasks();
+    })
 }
 
 // Function with DOM manipulation errors
@@ -49,7 +75,10 @@ function handleAddTask(event) {
 // Function that should use better selectors
 function displayTasks() {
     const container = document.getElementById("task-list");
-    
+    const statsButtons = document.querySelector(".stats-btns");
+
+    statsButtons.style.display = taskList < 1 ? "none" : "block";
+
     // Loop to clear content
     while(container.firstChild) {
         container.removeChild(container.firstChild);
@@ -58,7 +87,6 @@ function displayTasks() {
     for (let i = 0; i < taskList.length; i++) {
         const div = document.createElement("div");
         let status = taskList[i].completed ? "Completed" : "Pending";
-        
 
         const delButton = document.createElement("button");
         delButton.setAttribute("class", "delete-btn");
@@ -80,20 +108,20 @@ function displayTasks() {
         lowerPriorityButton.setAttribute("data-id", taskList[i].id);
         lowerPriorityButton.innerText = "Lower Priority";
         
-        div.insertAdjacentHTML("beforeend", `<h3>${status}</h3>`);
-        div.insertAdjacentHTML("beforeend", `<h3>${taskList[i].title}</h3>`);
-        div.insertAdjacentHTML("beforeend", `<p>${taskList[i].description}</p>`);
-        div.insertAdjacentHTML("beforeend", `<p>${taskList[i].priority}</p>`);
+        div.insertAdjacentHTML("beforeend", `<h3>Title: ${taskList[i].title}</h3>`);
+        div.insertAdjacentHTML("beforeend", `<p>Description: ${taskList[i].description}</p>`);
+        div.insertAdjacentHTML("beforeend", `<p>Completion Status: ${status}</p>`);
+        div.insertAdjacentHTML("beforeend", `<p>Priority: ${taskList[i].priority}</p>`);
         
         if(taskList[i].completed) {
             div.classList.add("completed");
         }
 
-        if(taskList[i].priority === 3) {
+        if(isHighPriority(taskList[i])) {
           raisePriorityButton.classList.add("high-priority");
         }
 
-        if(taskList[i].priority === 1) {
+        if(isLowPriority(taskList[i])) {
           lowerPriorityButton.classList.add("low-priority");
         }
         
@@ -109,52 +137,83 @@ function displayTasks() {
     saveToStorage(taskList);
 }
 
-// Function with event handling issues
+
 function handleTaskClick(event) {
-  const target = event.target;
-  const id = target.getAttribute("data-id");
-  const task = taskList.find((entry) => String(entry.id) === id)
+    const target = event.target;
+    const id = target.getAttribute("data-id");
+    const task = taskList.find((entry) => String(entry.id) === id)
 
-  if (!id) return;
+    if (!id) return;
 
-  if (target.classList.contains("delete-btn")) {
-    deleteEntry(id);
-  } else if (target.classList.contains("complete-btn")) {
-    if(task) {
-      task.toggleCompletion();
-      displayTasks();
+    if (target.classList.contains("delete-btn")) {
+        deleteEntry(id);
+    } else if (target.classList.contains("complete-btn")) {
+        if(task) {
+          task.toggleCompletion();
+          displayTasks();
+        }
+
+    } else if(target.classList.contains("raise-btn")) {
+        if(task) {
+            if(isLowPriority(task) || isMediumPriority(task)) {
+                task.priority += 1;
+                displayTasks();
+            }
+        }
+        
+
+    } else if(target.classList.contains("lower-btn")) {
+        if(task) {
+            if(isHighPriority(task) || isMediumPriority(task)) {
+                task.priority -= 1;
+                displayTasks();
+            }
+        }
+
     }
-  } else if(target.classList.contains("raise-btn")) {
-    if(isLowPriority(task) || isMediumPriority(task)) {
-      task.priority += 1;
-      displayTasks();
+}
+
+function handleShowStats() {
+    const totalTasks = taskList.length;
+    const totalCompleted = countCompletedTasks(taskList, 0);
+    const avgPriority = calculateAveragePriority();
+
+    const statistics = document.querySelector(".statistics");
+
+    while(statistics.firstChild) {
+        statistics.removeChild(statistics.firstChild);
     }
-  } else if(target.classList.contains("lower-btn")) {
-    if(isHighPriority(task) || isMediumPriority(task)) {
-      task.priority -= 1;
-      displayTasks();
-    }
-  }
+
+    statistics.style.display = "block";
+
+    const div = document.createElement("div");
+
+    div.insertAdjacentHTML("beforeend", `<h3>Statistics</h3>`);
+    div.insertAdjacentHTML("beforeend", `<p>Total Tasks: ${totalTasks}</p>`);
+    div.insertAdjacentHTML("beforeend", `<p>Total Completed: ${totalCompleted}</p>`);
+    div.insertAdjacentHTML("beforeend", `<p>Average Priority: ${avgPriority}</p>`);
+
+    statistics.appendChild(div);
 }
 
 function deleteEntry(id) {
-  const index = taskList.findIndex((entry) => String(entry.id) === id);
-  if (index !== -1) {
-    taskList.splice(index, 1);
-    displayTasks();
-  }
+    const index = taskList.findIndex((entry) => String(entry.id) === id);
+    if (index !== -1) {
+        taskList.splice(index, 1);
+        displayTasks();
+    }
 }
 
 function loadTasks() {
-  const loadedTasks = loadFromStorage() || [];
-  const result = loadedTasks.map(task => Object.assign(new Task(task.title, task.description, task.priority), task));
-  taskList.push(...result);
-  return taskList;
+    const loadedTasks = loadFromStorage() || [];
+    const result = loadedTasks.map(task => Object.assign(new Task(task.title, task.description, task.priority), task));
+    taskList.push(...result);
+    return taskList;
 }
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
-  loadTasks(), 
-  displayTasks(),
-  setupEventListeners()
+    loadTasks(); 
+    displayTasks();
+    setupEventListeners();
 });
