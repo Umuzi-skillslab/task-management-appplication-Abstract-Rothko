@@ -31,7 +31,6 @@ describe('Task Class', () => {
 });
 
 describe('Task Functions', () => {
-    // Missing: beforeEach to reset taskList
     beforeEach(() => {
         taskList.length = 0;
     })
@@ -44,13 +43,11 @@ describe('Task Functions', () => {
         expect(task).toBeDefined();
     });
     
-    // Missing: test for findTaskByTitle
     test('should find a task by its title', () => {
         const task = addTask('Task Title', 'Description', 1);
         expect(findTaskByTitle('Task Title')).toEqual(task);
     })
 
-    // Missing: test for updateTaskPriority
     test('should update priority', () => {
         const task = addTask('Task', 'Description', 1);
         const output = updateTaskPriority(task.id, 2);
@@ -58,7 +55,7 @@ describe('Task Functions', () => {
         expect(output).toBeTruthy();
     })
 
-    // Missing: test for calculateAveragePriority
+
     test('should return the average priority', () => {
         addTask('First Task', 'First Description', 1);
         addTask('Second Task', 'Second Description', 2);
@@ -67,7 +64,7 @@ describe('Task Functions', () => {
         expect(average).toBe(2);
     })
 
-    // Missing: test for error handling
+
     test('should not update priority', () => {
         const task = addTask('Title', 'Description', 3);
         const output = updateTaskPriority(task.id, 4);
@@ -90,7 +87,6 @@ describe('Array Operations', () => {
         taskList.length = 0;
     })
 
-    // Missing: tests for mergeTasks
     test('should merge tasks into single array', () => {
         const list1 = [{title: 'First', description: 'A', priority: 1}, {title: 'Second', description: 'B', priority: 2}];
         const list2 = [{title: 'Three', description: 'C', priority: 3}];
@@ -98,7 +94,6 @@ describe('Array Operations', () => {
         expect(mergeTasks(list1, list2)).toEqual([{title: 'First', description: 'A', priority: 1}, {title: 'Second', description: 'B', priority: 2}, {title: 'Three', description: 'C', priority: 3}])
     })
 
-    // Missing: tests for getHighPriorityTasks
     test('should return a filtered array', () => {
         addTask('First Task', 'First Description', 1);
         addTask('Second Task', 'Second Description', 2);
@@ -107,7 +102,6 @@ describe('Array Operations', () => {
         expect(filteredData).toHaveLength(2);
     })
 
-    // Missing: tests for recursive function
     test('should return total completed tasks', () => {
         const task1 = addTask('First Task', 'First Description', 1);
         task1.toggleCompletion()
@@ -120,7 +114,6 @@ describe('Array Operations', () => {
     })
 });
 
-// Missing: describe blocks for:
 describe('SubTask', () => {
     test('should be a subtask of Task', () => {
         const task = new Task('First Title', 'First Description', 1);
@@ -134,7 +127,6 @@ describe('SubTask', () => {
     })
 })
 
-// - Destructuring functions
 describe('destructuring function', () => {
     test("should destructure an object", () => {
         const task = new Task('First', 'Description', 3);
@@ -144,4 +136,3 @@ describe('destructuring function', () => {
     })
     
 })
-
