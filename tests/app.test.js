@@ -74,9 +74,22 @@ describe('Task Functions', () => {
         expect(task.priority).not.toBe(4);
         expect(output).toBeFalsy();
     })
+
+    test('should throw if incorrect data type', () => {
+        expect(() => addTask(10, 'description', 1)).toThrow();
+    })
+
+    test('should throw if parameter is not a number', () => {
+        expect(() => updateTaskPriority(null, 2)).toThrow();
+    })
+
 });
 
 describe('Array Operations', () => {
+    beforeEach(() => {
+        taskList.length = 0;
+    })
+
     // Missing: tests for mergeTasks
     test('should merge tasks into single array', () => {
         const list1 = [{title: 'First', description: 'A', priority: 1}, {title: 'Second', description: 'B', priority: 2}];
@@ -90,7 +103,7 @@ describe('Array Operations', () => {
         addTask('First Task', 'First Description', 1);
         addTask('Second Task', 'Second Description', 2);
         addTask('Third Task', 'Third Description', 3);
-        const filteredData = getHighPriorityTasks(2);
+        const filteredData = getHighPriorityTasks(1);
         expect(filteredData).toHaveLength(2);
     })
 
