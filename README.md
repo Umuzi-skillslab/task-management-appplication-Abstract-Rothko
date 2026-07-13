@@ -118,16 +118,16 @@ Change type of js files to module
 ## Screenshots
 
 ### Application Running in Browser
-![Screenshot of Application Running in Browser](screenshots\app-running.png)
+![Screenshot of Application Running in Browser](./screenshots/app-running.png)
 
 ### Features Working
-![Screenshot showing features Working](screenshots\features-working.png)
+![Screenshot showing features Working](./screenshots/features-working.png)
 
 ### Console Showing no Errors
-![Screenshot of Console Showing no Errors](screenshots\console-no-errors.png)
+![Screenshot of Console Showing no Errors](./screenshots/console-no-errors.png)
 
 ### Tests Passing
-![Screenshot of Tests Passing](screenshots\tests-passing.png)
+![Screenshot of Tests Passing](./screenshots/tests-passing.png)
 
 ---
 
