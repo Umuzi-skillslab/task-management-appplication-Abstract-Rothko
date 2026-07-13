@@ -77,7 +77,7 @@ function displayTasks() {
     const container = document.getElementById("task-list");
     const statsButtons = document.querySelector(".stats-btns");
 
-    statsButtons.style.display = taskList < 1 ? "none" : "block";
+    statsButtons.style.display = taskList.length < 1 ? "none" : "block";
 
     // Loop to clear content
     while(container.firstChild) {
