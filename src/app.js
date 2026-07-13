@@ -93,10 +93,8 @@ function getTaskDetails(task) {
     };
 }
 
-// Function missing spread/rest operators
-function mergeTasks(list1, list2) {
-    const merged = [...list1, ...list2]; // Implemented spread operator
-    return merged;
+function mergeTasks(...lists) {
+    return lists.reduce((merged, list) => [...merged, ...list], []);
 }
 
 // Recursive function
