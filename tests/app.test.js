@@ -123,9 +123,12 @@ describe('SubTask', () => {
 
 // - Destructuring functions
 describe('destructuring function', () => {
-    const task = new Task('First', 'Description', 3);
-    const details = getTaskDetails(task);
+    test("should destructure an object", () => {
+        const task = new Task('First', 'Description', 3);
+        const details = getTaskDetails(task);
 
-    expect(details).toEqual({title: task.title, description: task.description, priority: task.priority, completed: task.completed});
+        expect(details).toEqual({title: task.title, description: task.description, priority: task.priority, completed: task.completed});
+    })
+    
 })
 
