@@ -99,16 +99,16 @@ function mergeTasks(...lists) {
 
 // Recursive function
 function countCompletedTasks(tasks, index) {
+    // Added null/undefined check
+    if(tasks.length === 0) return 0;
+
+    if(index > (tasks.length - 1) || typeof index !== "number") throw new Error(`${index} should be a number between 0 - ${tasks.length}`);
+
     // Added base case check
     if(index === (tasks.length - 1)) {
         return tasks[index].completed ? 1 : 0;
     }
 
-    // Added null/undefined check
-    if(tasks.length === 0) return 0;
-
-    if(index > (tasks.length - 1) || typeof index !== "number") throw new Error(`${index} should be a number between 0 - ${tasks.length}`);
-    
     if (tasks[index].completed) {
         return 1 + countCompletedTasks(tasks, index + 1);
     } else {
