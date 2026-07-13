@@ -1,10 +1,9 @@
-// Utilities - Starter Code (WITH ERRORS AND MISSING FEATURES)
+// Utilities
 
-// Bug: Not using proper data structures
-export const priorities = {"low" : 1, "medium": 2, "high" : 3};
+const priorities = {"low" : 1, "medium": 2, "high" : 3};
 
 
-export function saveToStorage(data) {
+function saveToStorage(data) {
     try {
         localStorage.setItem("tasks", JSON.stringify(data));
     } catch(error) {
@@ -12,7 +11,7 @@ export function saveToStorage(data) {
     }
 }
 
-export function loadFromStorage() {
+function loadFromStorage() {
     try {
         const data = localStorage.getItem("tasks");
         return data ? JSON.parse(data) : [];
@@ -23,12 +22,12 @@ export function loadFromStorage() {
 }
 
 
-export function generateRandomId() {
+function generateRandomId() {
     return Math.round(Math.random() * 10000);
 }
 
 
-export function formatTaskName(name) {
+function formatTaskName(name) {
     let result = name
         .trim()
         .toLowerCase()
@@ -38,27 +37,25 @@ export function formatTaskName(name) {
     return result;
 }
 
-export function formatTaskPriority(value) {
+function formatTaskPriority(value) {
     let priority = Number(value);
     return priority;
 }
 
-export function isHighPriority(task) {
+function isHighPriority(task) {
     return task.priority === priorities["high"];
 }
 
-export function isLowPriority(task) {
+function isLowPriority(task) {
     return task.priority === priorities["low"];
 }
 
-export function isMediumPriority(task) {
+function isMediumPriority(task) {
     return task.priority === priorities["medium"];
 }
 
-// Missing: Class definitions
-// Missing: Inheritance example
-// Missing: Module exports
-// Missing: Proper use of operators (logical, comparison)
-// Missing: Recursion
-// Missing: Functional programming patterns
-// Missing: Proper scope demonstration
+export {
+    isHighPriority, isLowPriority, isMediumPriority,
+    formatTaskName, formatTaskPriority, generateRandomId,
+    loadFromStorage, saveToStorage, priorities,
+}
