@@ -32,8 +32,12 @@ class SubTask extends Task {
     }
 }
 
-// Function with no error handling
+// Function that adds task object to taskList
 function addTask(title, description, priority) {
+    if(typeof title !== "string" || typeof description !== "string" || typeof priority !== "number") {
+        throw new Error("Parameter is not correct data type");
+    }
+
     const newTask = new Task(title, description, priority);
     taskList.push(newTask);
     taskCounter++;
@@ -58,7 +62,6 @@ function findTaskByTitle(title) { // title parameter added
     return undefined;
 }
 
-// Function with type checking issues
 function updateTaskPriority(taskId, newPriority) {
     // typeof check for parameters
     if(typeof taskId !== "number") throw new Error(`${taskId} should be type number.`);
@@ -77,7 +80,7 @@ function updateTaskPriority(taskId, newPriority) {
     return false;
 }
 
-// Function that should use destructuring
+// Function uses destructuring
 function getTaskDetails(task) {
     // destructure task properties
     const { title, description, priority, completed } = task;
@@ -127,7 +130,6 @@ function calculateAveragePriority() {
     return Math.round(total / tasks.length); // Implemented Math.round
 }
 
-// Filter function with errors
 function getHighPriorityTasks(minPriority) {
     // implemented filter method
     const highPriority = taskList.filter(task => task.priority > minPriority);
@@ -135,7 +137,7 @@ function getHighPriorityTasks(minPriority) {
     return highPriority;
 }
 
-// Object with missing methods
+// Task Manager Object
 const TaskManager = {
     tasks: taskList,
     
