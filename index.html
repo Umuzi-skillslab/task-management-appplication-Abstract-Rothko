@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <div class="container">
@@ -12,15 +12,25 @@
         
         <div class="add-task-section">
             <h2>Add New Task</h2>
-            <!-- Form with issues -->
-            <input type="text" id="title" placeholder="Task Title">
-            <input type="text" id="description" placeholder="Description">
-            <!-- Missing: priority input -->
-            <button class="add-task-btn">Add Task</button>
+
+            <form id="task-input" aria-label="Task Input Form">
+                <input type="text" id="title" placeholder="Task Title" aria-label="Task Title" required>
+                <input type="text" id="description" placeholder="Description" aria-label="Description" required>
+                <input type="number" id="priority" min="1" max="3" placeholder="1" aria-label="Priority level, 1 to 3" required>
+                <button type="submit" id="add-task-btn">Add Task</button>
+            </form>
+        </div>
+        <div>
+            <button id="sort-btn">Sort Tasks</button>
         </div>
         
         <div class="task-list" id="task-list">
             <!-- Tasks will be displayed here -->
+        </div>
+
+        <div class="stats-btns" style="display: none;">
+            <button id="show-stats-btn">Show Stats</button>
+            <button id="hide-stats-btn">Hide Stats</button>
         </div>
         
         <div class="statistics">
@@ -28,9 +38,9 @@
         </div>
     </div>
     
-    <!-- Scripts loaded in wrong order -->
-    <script src="dom.js"></script>
-    <script src="app.js"></script>
-    <!-- Missing: module script -->
+
+    <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/dom.js"></script>
+    <script type="module" src="./src/utils.js"></script>
 </body>
 </html>
