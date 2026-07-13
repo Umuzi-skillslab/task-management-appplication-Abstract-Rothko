@@ -40,12 +40,12 @@ function setupEventListeners() {
     taskItems.addEventListener("click", handleTaskClick);
     showStatsButton.addEventListener("click", handleShowStats);
     hideStatsButton.addEventListener("click", () => {
-      const statistics = document.querySelector(".statistics");
-      statistics.style.display = "none";
+        const statistics = document.querySelector(".statistics");
+        statistics.style.display = "none";
     });
     sortButton.addEventListener("click", () => {
-      taskList.sort((a,b) => (b.priority - a.priority));
-      displayTasks();
+        taskList.sort(({ priority : a }, { priority : b }) => b - a );
+        displayTasks();
     })
 }
 
@@ -220,7 +220,6 @@ function loadTasks() {
     
 }
 
-// Initialize
 document.addEventListener("DOMContentLoaded", () => {
     loadTasks(); 
     displayTasks();
