@@ -9,7 +9,7 @@ function setupEventListeners() {
     const showStatsButton = document.getElementById("show-stats-btn");
     const hideStatsButton = document.getElementById("hide-stats-btn");
 
-    // Missing: null checks before adding listeners
+    // null checks before adding listeners
     if(!taskInput) {
         console.log("Task input returned null. Problem arose fetching it.");
         return;
@@ -35,6 +35,7 @@ function setupEventListeners() {
         return;
     }
     
+    // Event listeners
     taskInput.addEventListener("submit", handleAddTask);
     taskItems.addEventListener("click", handleTaskClick);
     showStatsButton.addEventListener("click", handleShowStats);
@@ -48,19 +49,19 @@ function setupEventListeners() {
     })
 }
 
-// Function with DOM manipulation errors
 function handleAddTask(event) {
     const titleInput = document.getElementById("title");
     const descInput = document.getElementById("description");
     const prioInput = document.getElementById("priority");
     
-    // No validation
+    // Prevent reloading
     event.preventDefault();
     
     const title = titleInput.value;
     const description = descInput.value;
     const priority = prioInput.value;
     
+    // Validation Check
     if(title.trim() === "" || description.trim() === "") {
         alert("Please complete all details");
         return;
@@ -72,7 +73,6 @@ function handleAddTask(event) {
     this.reset()
 }
 
-// Function that should use better selectors
 function displayTasks() {
     const container = document.getElementById("task-list");
     const statsButtons = document.querySelector(".stats-btns");
@@ -88,21 +88,25 @@ function displayTasks() {
         const div = document.createElement("div");
         let status = taskList[i].completed ? "Completed" : "Pending";
 
+        // Creation of Delete Button
         const delButton = document.createElement("button");
         delButton.setAttribute("class", "delete-btn");
         delButton.setAttribute("data-id", taskList[i].id);
         delButton.innerText = "Delete";
         
+        // Creation of Complete Button - Mark as Complete
         const completeButton = document.createElement("button");
         completeButton.setAttribute("class", "complete-btn");
         completeButton.setAttribute("data-id", taskList[i].id);
         completeButton.innerText = taskList[i].completed ? "Undo" : "Complete";
 
+        // Creation of Button that raises priority level
         const raisePriorityButton = document.createElement("button");
         raisePriorityButton.setAttribute("class", "raise-btn");
         raisePriorityButton.setAttribute("data-id", taskList[i].id);
         raisePriorityButton.innerText = "Raise Priority";
 
+        // Creation of button that lowers priority level
         const lowerPriorityButton = document.createElement("button");
         lowerPriorityButton.setAttribute("class", "lower-btn");
         lowerPriorityButton.setAttribute("data-id", taskList[i].id);
