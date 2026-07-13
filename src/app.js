@@ -69,7 +69,7 @@ function updateTaskPriority(taskId, newPriority) {
     if(taskList.length === 0) return false;
     
     for (let i = 0; i < taskList.length; i++) {
-        if (taskList[i].id === taskId) {
+        if (taskList[i].id === taskId && (newPriority > 0 && newPriority < 4)) { // Create bounds for newPriority parameter
             taskList[i].priority = newPriority;
             return true;
         }
